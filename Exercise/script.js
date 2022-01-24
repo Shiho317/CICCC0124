@@ -1,5 +1,5 @@
 /* JavaScript DOM Exercises 01 */
-
+//
 /*
   Exercise 01
   -----------
