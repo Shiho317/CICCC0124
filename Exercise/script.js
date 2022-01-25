@@ -5,8 +5,16 @@
   -----------
   Highlight all of the words over 8 characters long in the paragraph text (with a yellow background for example)
 */
-const paragraph = document.querySelector('p')
-paragraph.style.backgroundColor = 'yellow';
+const para = document.querySelector('p');
+const pContents = para.textContent;
+const highLight = pContents.split(' ').map(word => {
+  return word.length > 8 ? `<span style="background-color: yellow">${word}</span>`
+  : word;
+}).join(' ');
+
+para.innerHTML = highLight;
+
+
 /*
   Exercise 02
   -----------
@@ -19,10 +27,10 @@ const newContent = document.createTextNode('This is Link');
 newElement.appendChild(newContent);
 newElement.setAttribute("href", "http://officeipsum.com/");
 
-const parent = paragraph.parentElement;
+const parent = para.parentElement;
 console.log(parent)
 
-parent.insertBefore(newElement, paragraph.nextSibling);
+parent.insertBefore(newElement, para.nextSibling);
 
 
 /*
@@ -32,9 +40,7 @@ parent.insertBefore(newElement, paragraph.nextSibling);
   A sentence can be assumed to be a string of text terminated with a period (.)
 */
 
-const pContents = paragraph.textContent;
-
-const split = pContents.split('.');
+const split = highLight.split('.');
 
 const mapping = split.map(par => (
   par + '.<br/>'
@@ -42,7 +48,7 @@ const mapping = split.map(par => (
 
 const inner = mapping.join('');
 
-paragraph.innerHTML = inner;
+para.innerHTML = inner;
 
 /* 
   Exercise 04
@@ -69,12 +75,12 @@ parent.insertBefore(newHeading, header.nextSibling);
   Replace all question marks (?) with thinking faces (🤔) and exclamation marks (!) with astonished faces (😲) 
 */
 
-console.log(paragraph.innerHTML)
-const str = paragraph.innerHTML;
+console.log(para.innerHTML)
+const str = para.innerHTML;
 
 let getThinkng = str.replaceAll('?', '🤔')
 let getAstonished = getThinkng.replaceAll('!', '😲');
 
 console.log(getAstonished);
 
-paragraph.innerHTML = getAstonished;
+para.innerHTML = getAstonished;
